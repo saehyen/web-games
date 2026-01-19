@@ -1,0 +1,19 @@
+version: 1.0
+phases:
+  pre_build:
+    commands:
+      - echo "Starting Pre-build phase..."
+      - ls -al  # 현재 경로에 파일이 잘 있는지 확인
+  build:
+    commands:
+      - echo "Starting Build phase..."
+      - # 정적 파일들을 배포용 디렉토리(output)에 복사
+      - mkdir output
+      - cp index.html style.css script.js ./output/
+  post_build:
+    commands:
+      - echo "Build completed successfully."
+artifacts:
+  files:
+    - '**/*'
+  base-directory: output  # output 폴더 안에 있는 파일들만 빌드 결과물(Artifact)로 만듦
